@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: emqtt
+  labels:
+    k8s-app: emqtt
+    kubernetes.io/cluster-service: "true"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      k8s-app: emqtt
+  template:
+    metadata:
+      labels:
+        k8s-app: emqtt
+      annotations:
+        scheduler.alpha.kubernetes.io/critical-pod: ''
+        scheduler.alpha.kubernetes.io/tolerations: '[{"key":"CriticalAddonsOnly", "operator":"Exists"}]'
+    spec:
+      containers:
+      - name: emqtt
+        image: kairen/emqtt-armhf:2.0.7
+        env:
+        - name: EMQ_LOADED_PLUGINS
+          value: "emq_mod_subscription"
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 50Mi
+        ports:
+        - name: emqtt
+          containerPort: 1883
+        - name: emqtt-dash
+          containerPort: 18083

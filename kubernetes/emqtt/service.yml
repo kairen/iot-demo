@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: emqtt
+  labels:
+    k8s-app: emqtt
+    kubernetes.io/cluster-service: "true"
+spec:
+  selector:
+    k8s-app: emqtt
+  externalIPs:
+  - 172.20.3.27
+  ports:
+  - name: emqtt
+    port: 1883
+    protocol: TCP
+    targetPort: 1883
+  - name: emqtt-dash
+    port: 8083
+    protocol: TCP
+    targetPort: 18083
+  type: LoadBalancer
