@@ -10,8 +10,8 @@
 // Defines
 #define DHT_PIN A4
 #define PHOTOCELL_PIN 5
-#define SSID        "<SSID>"
-#define PASSWORD    "<PASSWORD>"
+#define SSID        "SSID"
+#define PASSWORD    "PASSWD"
 #define BUFF_LEN 5
 
 SoftwareSerial wifiSerial(12, 13); /* RX:D3, TX:D2 */
@@ -25,7 +25,7 @@ void reconnect();
 
 int status = WL_IDLE_STATUS;
 int photocellVal = 0;
-static const char *name = "arduino-2";
+static const char *name = "arduino-1";
 static const char *topic = "gateway";
 
 void setup() {

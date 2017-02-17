@@ -28,6 +28,8 @@ spec:
            value: "172.20.3.21"
          - name: MQTT_PUB_TOPIC
            value: "Cloud"
+         - name: DEBUG
+           value: "True"
          - name: SERVICE_NAME
            value: "emqtt"
          - name: POD_NAME
