@@ -5,7 +5,7 @@ ADD ./start.sh /opt/start.sh
 ADD ./discover.py /opt/discover.py
 ADD ./receiver.py /opt/receiver.py
 
-RUN apk --no-cache add python nmap tzdata && \
+RUN apk --no-cache add python nmap tzdata py-setuptools py-psutil && \
     python -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
     pip install --upgrade pip setuptools && \

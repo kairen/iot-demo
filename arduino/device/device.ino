@@ -11,12 +11,12 @@
 #define DHT_PIN A4
 #define PHOTOCELL_PIN 5
 #define SSID        "SSID"
-#define PASSWORD    "PASSWD"
+#define PASSWORD    "PASSWORD"
 #define BUFF_LEN 5
 
 SoftwareSerial wifiSerial(12, 13); /* RX:D3, TX:D2 */
 WiFiEspClient espClient;
-IPAddress server(172, 20, 3, 27);
+IPAddress server(192, 168, 1, 103);
 PubSubClient client(espClient);
 dht DHT;
 
@@ -25,7 +25,7 @@ void reconnect();
 
 int status = WL_IDLE_STATUS;
 int photocellVal = 0;
-static const char *name = "arduino-1";
+static const char *name = "arduino-2";
 static const char *topic = "gateway";
 
 void setup() {
@@ -62,7 +62,7 @@ void loop() {
   String(DHT.humidity, BUFF_LEN).toCharArray(hum, BUFF_LEN);
 
   char buffer[100];
-  sprintf(buffer, "{\"name\":\"%s\",\"temperature\":%s,\"humidity\":%s,\"photocell\":%d}", name, temp, hum, photocellVal);
+  sprintf(buffer, "{\"a2_name\":\"%s\",\"a2_temperature\":%s,\"a2_humidity\":%s,\"a2_photocell\":%d}", name, temp, hum, photocellVal);
   Serial.println(buffer);
 
   if (!client.connected()) {
